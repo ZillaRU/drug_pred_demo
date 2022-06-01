@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Molecule property prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}" charset="utf-8">
+</head>
+
+<h1 align="center">Predict Absorption Wavelength by <i>ChemFluo</i></h1>
+<br>
+<a class="my-button" align='center' href="{{ url_for('pred_single') }}">Predict one by one</a>
+
+<div class="info">
+    Please format your files as follows.
+    <ol> Option 1: An Excel file with NO header, contains two columns (molecule, solvent).
+    </ol>
+    <ol> Option 2: A csv file with NO header, contains two columns (molecule, solvent).<br>
+        a csv file example.<br>
+        O=C1OC2=CC(N(CC)CC)=CC=C2C=C1C3=NC(C=CC=C4)=C4S3,CCCCO<br>
+        OC1=C(/C=C/C2=[N+](CC)C(C=CC=C3)=C3S2)C=C(C)C=C1C4=NC5=CC=CC=C5S4.[I-],CC#N<br>
+        O=C1OC2=CC=CC=C2C3=C1N=CO3,[H]O[H]<br>
+    </ol>
+</div>
+<form action="{{ url_for('pred_batch') }}" method="POST" enctype="multipart/form-data">
+    <p><input type=file name="molsolcsv" accept=".xls,.xlsx,.csv"></p>
+    <br><input type=submit value="Predict and Download Results" required>
+</form>
+
+{#{% if result_cnt %}#}
+{#<div class="result" align="center">#}
+{#    <p style="font-size:30px">Done.</p>#}
+{#    <p style="font-size:20px">The results of {{result_cnt['#all']-result_cnt['#valid']}} out of {{result_cnt['#all']}} are invalid due to RDKit errors.</p>#}
+{#</div>#}
+{#    <div class="container" align="center">#}
+{#        <a href="/return-files/{{ value }}" target="blank">#}
+{#                <div class="my-button">Download</div>#}
+{#            </a>#}
+{#    </div>#}
+{#https://stackoverflow.com/questions/9198334/how-to-build-up-a-html-table-with-a-simple-for-loop-in-jinja2#}
+{#<div class="result" align="center">#}
+{#    <table>#}
+{#        {% for k,v in pred_result.items() %}#}
+{#            <TR>#}
+{#            </TR>#}
+{#        {% endfor %}#}
+{#    </table>#}
+{#</div>#}
+{#{% endif %}#}
+<div class="info" align="center">
+    <a href="https://github.com/yliuhz/PMAW/">Github</a> &nbsp;
+    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jcim.1c01449">Paper</a> <br>
+    If you find <i>ChemFluo</i> is useful for your research, please cite our paper as:
+    <ol>
+        <h4>Prediction of Maximum Absorption Wavelength Using Deep Neural Networks</h4>
+        <div>Jinning Shao, Yue Liu, Jiaqi Yan, Ze-Yi Yan, Yangyang Wu, Zhongying Ru, Jia-Yu Liao, Xiaoye Miao, and
+            Linghui Qian
+        </div>
+        <div><cite>Journal of Chemical Information and Modeling</cite>
+
+            <strong>2022</strong>
+            <em>62</em>
+            (6),
+            1368-1375
+        </div>
+        DOI: 10.1021/acs.jcim.1c01449
+    </ol>
+</div>
+<footer align="center">&copy; Copyright 2022 Zhejiang University</footer>
+</html>
+

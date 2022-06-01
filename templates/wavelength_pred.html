@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Predict Absorption Wavelength by ChemFluo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}" charset="utf-8">
+</head>
+
+<h1 align="center">Predict Absorption Wavelength by <i>ChemFluo</i></h1>
+<br>
+<a class="my-button" href="{{ url_for('pred_batch') }}">Multiple Prediction at Once</a>
+
+<form action="{{ url_for('pred_single') }}" method="POST">
+    <fieldset>
+        <legend>Input</legend>
+        SMILES string of molecule:
+        <input name="mol_str" type="text"
+               placeholder="e.g., O=C1C=CC2=CC=C(O)C=C2O1" required>
+        <br>
+        SMILES string of solvent:
+        <input name="sol_str" type="text"
+               placeholder="e.g., ClCCl" required>
+        <br>
+        <input type="submit" value="Get Prediction">
+    </fieldset>
+</form>
+<br>
+{% if result %}
+<div class="result" align="center">
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+            <br>
+        {% endfor %}
+
+        <br>
+        {% if result is float%}
+            <br> Predicted value:
+            <p style="font-size:40px">{{ result }}</p>
+        {% else %}
+            <p style="font-size:20px">{{ result }}</p>
+        {% endif %}
+</div>
+{% endif %}
+
+<div class="info" align="center">
+    <a href="https://github.com/yliuhz/PMAW/">Github</a> &nbsp;
+    <a href="https://pubs.acs.org/doi/full/10.1021/acs.jcim.1c01449">Paper</a><br>
+    If you find <i>ChemFluo</i> is useful for your research, please cite our paper as:
+    <ol>
+        <h4>Prediction of Maximum Absorption Wavelength Using Deep Neural Networks</h4>
+        <div>Jinning Shao, Yue Liu, Jiaqi Yan, Ze-Yi Yan, Yangyang Wu, Zhongying Ru, Jia-Yu Liao, Xiaoye Miao, and
+            Linghui
+            Qian
+        </div>
+        <div><cite>Journal of Chemical Information and Modeling</cite>
+
+            <strong>2022</strong>
+            <em>62</em>
+            (6),
+            1368-1375
+        </div>
+        DOI: 10.1021/acs.jcim.1c01449
+    </ol>
+</div>
+<footer align="center">&copy; Copyright 2022 Zhejiang University</footer>
+</html>
+

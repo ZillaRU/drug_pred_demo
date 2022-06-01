@@ -53,9 +53,15 @@ def wavelength_prediction(smiles1, smiles2):
 
 def wavelength_prediction_batch(_file):
     if _file.filename.endswith('.csv'):
-        df = pd.read_csv(_file, header=None)
+        try:
+            df = pd.read_csv(_file, header=None)
+        except Exception:
+            return "Invalid file, please check the format."
     else:  # excel
-        df = pd.read_excel(_file, header=None)
+        try:
+            df = pd.read_excel(_file, header=None)
+        except Exception:
+            return "Invalid file, please check the format."
     sm_mol1s, sm_mol2s = list(df.iloc[:, 0]), list(df.iloc[:, 1])
     mol1s, mol2s = [str2mol(i) for i in sm_mol1s], [str2mol(i) for i in sm_mol2s]
     morgan1s, morgan2s, maccs1s, maccs2s = [], [], [], []

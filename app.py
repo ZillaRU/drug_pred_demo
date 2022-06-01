@@ -32,7 +32,11 @@ def pred_batch():
         return flask.render_template('wavelength_pred_batch.html')
     if flask.request.method == 'POST':
         mol_sol_csv = flask.request.files['molsolcsv']
-        mols, sols, preds = wavelength_prediction_batch(mol_sol_csv)
+        temp = wavelength_prediction_batch(mol_sol_csv)
+        if isinstance(temp, str):
+            return flask.render_template("Error.html")
+        else:
+            mols, sols, preds = temp
         df = pd.DataFrame({
             'Molecule': mols,
             'Solvent': sols,

@@ -11,10 +11,8 @@
 <a class="my-button" align='center' href="{{ url_for('pred_single') }}">Predict one by one</a>
 <br>
 <div class="info">
-    Please format your files as follows.
-    <ol> Option 1: An Excel file with NO header, contains two columns (molecule, solvent).
-    </ol>
-    <ol> Option 2: A csv file with NO header, contains two columns (molecule, solvent).<br>
+    Please format your file as follows.
+    <ol> A csv file with NO header, contains two columns (molecule, solvent).<br>
         a csv file example.<br>
         O=C1OC2=CC(N(CC)CC)=CC=C2C=C1C3=NC(C=CC=C4)=C4S3,CCCCO<br>
         OC1=C(/C=C/C2=[N+](CC)C(C=CC=C3)=C3S2)C=C(C)C=C1C4=NC5=CC=CC=C5S4.[I-],CC#N<br>
@@ -22,7 +20,7 @@
     </ol>
 </div>
 <form action="{{ url_for('pred_batch') }}" method="POST" enctype="multipart/form-data">
-    <p><input type=file name="molsolcsv" accept=".xls,.xlsx,.csv"></p>
+    <p><input type=file name="molsolcsv" accept=".csv" required></p>
     <br><input type=submit value="Predict and Download Results" required>
 </form>
 

@@ -1,8 +1,11 @@
-[src code of model training](https://github.com/yliuhz/PMAW)
 
-[paper](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c01449)
+#### [Predict online](http://47.122.43.238/wavelength_pred_batch)
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/25343084/193443131-82a04c2c-bf02-41b0-b4db-72e9501272c9.png">
 
-[predict online](http://fluobot.zju.edu.cn:9717/)
+#### [Src code of model training](https://github.com/yliuhz/PMAW)
+
+#### [Paper](https://pubs.acs.org/doi/abs/10.1021/acs.jcim.1c01449)
+
 
 ### Requirements
 
